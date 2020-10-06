@@ -6,7 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
+/**
+ * Entité representant un client
+ *
+ * @author Francis AHONSU
+ * @since 05-10-2020
+ */
 @Entity
 public class Client extends AbstractAuditingEntity {
     @Id
@@ -35,5 +42,27 @@ public class Client extends AbstractAuditingEntity {
 
     public void setNom(Long nom) {
         this.nom = nom;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(id, client.id) &&
+                Objects.equals(nom, client.nom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom);
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", nom=" + nom +
+                '}';
     }
 }
