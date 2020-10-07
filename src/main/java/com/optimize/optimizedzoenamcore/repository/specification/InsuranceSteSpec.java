@@ -17,7 +17,7 @@ public class InsuranceSteSpec extends BaseSpecifications {
     public static Specification<InsuranceSociety> getCriteres(InsuranceSteFinder insuranceSteFinder){
         Specification<InsuranceSociety> spec = Specification.where((root, query, cb) -> cb.equal(cb.literal(1), 1));
         spec = contains(spec, "raisonSociale", insuranceSteFinder.getRaisonSociale());
-        spec = isEqual("state", insuranceSteFinder.getState());
+        spec = equal(spec, "state", insuranceSteFinder.getState());
         spec = contains(spec, "email", insuranceSteFinder.getEmail());
         spec = contains(spec, "tel", insuranceSteFinder.getTel());
 

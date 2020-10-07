@@ -14,7 +14,7 @@ public class ClientSpec extends BaseSpecifications {
     public static Specification<Client> getCriteres(ClientFinder clientFinder){
         Specification<Client> spec = Specification.where((root, query, cb) -> cb.equal(cb.literal(1), 1));
         spec = contains(spec, "nom", clientFinder.getNom());
-        spec = isEqual("state", clientFinder.getState());
+        spec = equal(spec,"state", clientFinder.getState());
         spec = contains(spec, "email", clientFinder.getEmail());
         spec = contains(spec, "tel", clientFinder.getTel());
 

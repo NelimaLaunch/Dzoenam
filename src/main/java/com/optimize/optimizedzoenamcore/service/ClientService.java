@@ -7,6 +7,8 @@ import com.optimize.optimizedzoenamcore.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  * Service du client
@@ -24,6 +26,11 @@ public class ClientService extends GenericService<Client, Long> {
 
     @Override
     public Client update(Client client) {
-        return null;
+        Client old = getOne(client.getId());
+        if(Objects.nonNull(client.getNom())){
+            old.setNom(client.getNom());
+        }
+        old.setLastModifiedDate(new Date());
+         return create(old);
     }
 }
